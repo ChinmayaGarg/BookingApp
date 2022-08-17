@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ChinmayaGarg/BookingApp/issues"
   },
-  "homepage": "https://github.com/ChinmayaGarg/BookingApp#readme"
+  "homepage": "https://github.com/ChinmayaGarg/BookingApp#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
