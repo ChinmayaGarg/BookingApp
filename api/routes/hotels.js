@@ -37,6 +37,15 @@ router.delete('/:id', async (req, res) => {
 });
 
 // GET
+router.get('/:id', async (req, res) => {
+  try {
+    const hotel = await Hotel.findById(req.params.id);
+    res.status(200).json(hotel);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // GET ALL
 
 export default router;
