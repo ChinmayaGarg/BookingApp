@@ -27,6 +27,9 @@ mongoose.connection.on('connected', () => {
 });
 
 //middleware
+
+app.use(express.json()); // Middleware integrated: This will allow sending JSON object in request
+
 app.use('/auth', authRoute);
 app.use('/users', usersRoute);
 app.use('/hotels', hotelsRoute);
