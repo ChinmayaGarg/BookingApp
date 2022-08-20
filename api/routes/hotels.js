@@ -88,4 +88,40 @@ $set: req.body
 new:true
   In findByIdAndUpdate we passed new true, which will return document after updating and not the one that is not updated.
   Depending on APIs requirement either original/old document is returned or the updated one.
+
+  
+With the help of API Platform like Postman or Insomnia, we can check by sending requests to the API.
+
+1. For POST request for Hotel we can use following data in our request:
+          API Request URL: localhost:8800/hotels
+          API Request Body: 
+                            {
+                              "name":"Hotel Name",
+                              "type": "Hotel",
+                              "city": "Hotel City",
+                              "address": "Hotel Address",
+                              "distance":"500",
+                              "title":"Best Hotel In the City",
+                              "desc": "Hotel Description",
+                              "cheapestPrice":100
+                            }
+
+2. For PUT request for Hotel we can use following data in our request:
+          API Request URL: localhost:8800/hotels/6300c8524ac26fbd5724e706
+          API Request Body: 
+                            {
+                              "name":"Hotel Name Updated"
+                            }
+
+3. For DELETE request for Hotel we can use following data in our request:
+          API Request URL: localhost:8800/hotels/6300c8524ac26fbd5724e706
+          API Request Body: null
+
+4. For GET request for Hotel we can use following data in our request:
+          API Request URL: localhost:8800/hotels/6300c8524ac26fbd5724e706
+          API Request Body: null
+
+5. For GET ALL request for Hotel we can use following data in our request:
+          API Request URL: localhost:8800/hotels
+          API Request Body: null
 */
