@@ -15,7 +15,17 @@ router.post('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 // UPDATE
+router.put('/:id', async (req, res) => {
+  try {
+    const updatedHotel = await Hotel.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+    res.status(200).json(updatedHotel);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // DELETE
 // GET
 // GET ALL
@@ -38,4 +48,18 @@ const savedHotel = await newHotel.save();
   The save() method is asynchronous, so it returns a promise that you can await on.
   https://mongoosejs.com/docs/documents.html
   https://masteringjs.io/tutorials/mongoose/save
+
+router.put('/:id', async (req, res) => {
+const updatedHotel = await Hotel.findByIdAndUpdate(req.params.id, { $set: req.body }, { new:true });
+  1. We created a PUT request.
+  2. We passed a param id by :id inside endpoint
+  3. We used that id from params to find the document in "hotels" collection
+  4. Than we updated the document's key-value pairs that we needed to update
+
+$set: req.body
+  It is the MongoDBs set method, here we have passed what we want to change (i.e. what client requested)
+
+new:true
+  In findByIdAndUpdate we passed new true, which will return document after updating and not the one that is not updated.
+  Depending on APIs requirement either original/old document is returned or the updated one.
 */
