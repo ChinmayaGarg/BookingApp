@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
     const hotel = await Hotel.find();
     res.status(200).json(hotel);
   } catch (err) {
-    res.status(500).json(err);
+    next(err);
   }
 });
 
