@@ -20,3 +20,31 @@ The order of middleware loading is important: middleware functions that are load
 ERROR HANDLING USING MIDDLEWARE:
 app.use((err, req, res, next) => {})
 To handle error using middleware, the function will take all 4 parameters [4 parameters are necessary, and in the same order.]
+
+We will move all the "operations" / "request handlers" / "handler functions" of hotels (for every route we will move) from routes to controllers.
+"controllers" — functions that separate out the code to route requests from the code that actually processes requests.
+Controllers help us to make code less messy and look clean.
+
+1. "Routes" to forward the supported requests (and any information encoded in request URLs) to the appropriate controller functions.
+2. Controller functions to get the requested data from the models, create an HTML page displaying the data, and return it to the user to view in the browser.
+3. Views (templates) used by the controllers to render the data.
+
+The diagram below is provided as a reminder of the main flow of data and things that need to be implemented when handling an HTTP request/response.
+https://lo-victoria.com/build-a-rest-api-with-nodejs-routes-and-controllers
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes
+
+												   ________
+												   |Routes| <------ HTTP Request
+													   |
+												       |	
+											   Forward Request to 
+											   appropriate Controller 
+											  		   |
+													   |
+__________        ________                        _____V______			
+|Database| <----> |Models| <--read/write data---> |Controller| ------> HTTP Response (HTML) 
+													   ^
+													   |
+													   |
+											   ________|__________
+											   |Views (templates)|
