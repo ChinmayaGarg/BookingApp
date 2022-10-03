@@ -48,3 +48,30 @@ __________        ________                        _____V______
 													   |
 											   ________|__________
 											   |Views (templates)|
+
+------------------------------------------------------------------------------------------------------------------------
+What is JWT?
+
+https://www.akana.com/blog/what-is-jwt
+JWT is becoming more popular for securing APIs.
+JWT, or JSON Web Token, is an open standard used to share security information between two parties — a client and a server. 
+Each JWT contains encoded JSON objects, including a set of claims. 
+JWTs are signed using a cryptographic algorithm to ensure that the claims cannot be altered after the token is issued.
+
+https://www.youtube.com/watch?v=7Q17ubqLfaM [Very useful and informative]*****
+
+JWT is only for authorization and not authentication.
+Authentication: Taking username and password and making sure the username and password is correct. (Logging In)
+Authorization: Means the user that sends request to the server is the same user that actually logged in during the authentication.
+			   Authorizing means that the user has access to a particular system.
+
+Normally, authorization is done by using sessions. Eg: We have a session id that we send down in the cookiesof the browser and then
+everytime the client makes the request, they send the session id up to the server and the server checks its memory and finds the session ID.
+Then server does the authorization (it checks if the user is authorized to make sure user has access for the data it requested.) 
+Server says ok. The user which has that session ID can get the data or not.
+
+But JWT, instead of actually using these cookies it uses a JSON Web Token (JWT) to do the authorization.
+
+Session is stored at server while JWT is not.
+Session can be used at only one server where it is stored, even though servers are horizontally scaled, 
+while JWT can be used at any server since JWT is not stored, instead it contains header.payload.signature. (JWT Playground: https://jwt.io/)
