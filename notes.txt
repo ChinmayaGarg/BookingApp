@@ -75,3 +75,8 @@ But JWT, instead of actually using these cookies it uses a JSON Web Token (JWT) 
 Session is stored at server while JWT is not.
 Session can be used at only one server where it is stored, even though servers are horizontally scaled, 
 while JWT can be used at any server since JWT is not stored, instead it contains header.payload.signature. (JWT Playground: https://jwt.io/)
+
+------------------------------------------------------------------------------------------------------------------------
+
+Cookies explained
+https://cheatcode.co/tutorials/how-to-implement-secure-httponly-cookies-in-node-js-with-express [Very useful and informative]*****
