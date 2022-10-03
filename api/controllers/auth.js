@@ -33,7 +33,12 @@ export const login = async (req, res, next) => {
     const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, 'process.env.JWT');
     const { passwrord, isAdmin, ...otherDetails } = user._doc;
 
-    res.status(200).send({ ...otherDetails });
+    res
+      .cookie('access_token', token, {
+        httponly: true
+      })
+      .status(200)
+      .send({ ...otherDetails });
   } catch (err) {
     next(err);
   }
@@ -53,4 +58,16 @@ export const login = async (req, res, next) => {
     });
 
 
+------------------------------------------------------------------------------------------------------------------------
+
+// third parameter lets you set configuration, and we set httponly to true.
+The httpOnly property takes a boolean (true/false) value, 
+here specifying whether or not the cookies should be accessible via JavaScript in the browser. 
+This setting is forced to true, because it ensures that any cross-site scripting attacks (XSS) are impossible. 
+We don't have to worry about the development environment here as this setting does not have a dependency on SSL or 
+any other browser features.
+
+    .cookie('access_token', token, {
+        httponly: true
+      })
 */
