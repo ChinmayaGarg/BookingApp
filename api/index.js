@@ -7,6 +7,8 @@ import usersRoute from './routes/users.js';
 import hotelsRoute from './routes/hotels.js';
 import roomsRoute from './routes/rooms.js';
 
+import cookieParser from 'cookie-parser';
+
 const app = express();
 dotenv.config();
 const connect = async () => {
@@ -27,7 +29,7 @@ mongoose.connection.on('connected', () => {
 });
 
 //middleware
-
+app.use(cookieParser());
 app.use(express.json()); // Middleware integrated: This will allow sending JSON object in request
 
 app.use('/auth', authRoute);
