@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import { createError } from '../utils/error.js';
+import jwt from 'jsonwebtoken';
 
 export const register = async (req, res, next) => {
   try {
@@ -28,6 +29,8 @@ export const login = async (req, res, next) => {
     const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password);
     if (!isPasswordCorrect) return next(createError(400, 'Wrong Password or Username'));
 
+    // Generate random key using following command "openssl rand -base64 32", to encrypt data in the token.
+    const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, 'process.env.JWT');
     const { passwrord, isAdmin, ...otherDetails } = user._doc;
 
     res.status(200).send({ ...otherDetails });
