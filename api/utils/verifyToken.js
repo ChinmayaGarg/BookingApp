@@ -21,6 +21,13 @@ export const verifyUser = (req, res, next) => {
   });
 };
 
+export const verifyAdmin = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (req.user.isAdmin) next();
+    else next(createError(401, 'You are not authorized!'));
+  });
+};
+
 /*
 
 We can write anything in place of "user" in "req.user", because we are assigning a new property to it.
