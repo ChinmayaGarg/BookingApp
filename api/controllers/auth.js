@@ -30,7 +30,7 @@ export const login = async (req, res, next) => {
     if (!isPasswordCorrect) return next(createError(400, 'Wrong Password or Username'));
 
     // Generate random key using following command "openssl rand -base64 32", to encrypt data in the token.
-    const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, 'process.env.JWT');
+    const token = jwt.sign({ id: user._id, isAdmin: user.isAdmin }, process.env.JWT);
     const { passwrord, isAdmin, ...otherDetails } = user._doc;
 
     res
