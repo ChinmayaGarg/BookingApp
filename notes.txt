@@ -1,0 +1,82 @@
+http://expressjs.com/en/guide/writing-middleware.html
+
+Why middlewares are important?
+Middlewares are important because they are able to reach requests and response before sending anything to user.
+Middleware functions are functions that have access to the request object (req), the response object (res), 
+and the next function in the application’s request-response cycle. 
+The next function is a function in the Express router which, when invoked, executes the middleware succeeding the current middleware.
+
+Middleware functions can perform the following tasks:
+1. Execute any code.
+2. Make changes to the request and the response objects.
+3. End the request-response cycle.
+4. Call the next middleware in the stack.
+
+If the current middleware function does not end the request-response cycle, 
+it must call next() to pass control to the next middleware function. Otherwise, the request will be left hanging.
+
+The order of middleware loading is important: middleware functions that are loaded first are also executed first.
+
+ERROR HANDLING USING MIDDLEWARE:
+app.use((err, req, res, next) => {})
+To handle error using middleware, the function will take all 4 parameters [4 parameters are necessary, and in the same order.]
+
+We will move all the "operations" / "request handlers" / "handler functions" of hotels (for every route we will move) from routes to controllers.
+"controllers" — functions that separate out the code to route requests from the code that actually processes requests.
+Controllers help us to make code less messy and look clean.
+
+1. "Routes" to forward the supported requests (and any information encoded in request URLs) to the appropriate controller functions.
+2. Controller functions to get the requested data from the models, create an HTML page displaying the data, and return it to the user to view in the browser.
+3. Views (templates) used by the controllers to render the data.
+
+The diagram below is provided as a reminder of the main flow of data and things that need to be implemented when handling an HTTP request/response.
+https://lo-victoria.com/build-a-rest-api-with-nodejs-routes-and-controllers
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes
+
+												   ________
+												   |Routes| <------ HTTP Request
+													   |
+												       |	
+											   Forward Request to 
+											   appropriate Controller 
+											  		   |
+													   |
+__________        ________                        _____V______			
+|Database| <----> |Models| <--read/write data---> |Controller| ------> HTTP Response (HTML) 
+													   ^
+													   |
+													   |
+											   ________|__________
+											   |Views (templates)|
+
+------------------------------------------------------------------------------------------------------------------------
+What is JWT?
+
+https://www.akana.com/blog/what-is-jwt
+JWT is becoming more popular for securing APIs.
+JWT, or JSON Web Token, is an open standard used to share security information between two parties — a client and a server. 
+Each JWT contains encoded JSON objects, including a set of claims. 
+JWTs are signed using a cryptographic algorithm to ensure that the claims cannot be altered after the token is issued.
+
+https://www.youtube.com/watch?v=7Q17ubqLfaM [Very useful and informative]*****
+
+JWT is only for authorization and not authentication.
+Authentication: Taking username and password and making sure the username and password is correct. (Logging In)
+Authorization: Means the user that sends request to the server is the same user that actually logged in during the authentication.
+			   Authorizing means that the user has access to a particular system.
+
+Normally, authorization is done by using sessions. Eg: We have a session id that we send down in the cookiesof the browser and then
+everytime the client makes the request, they send the session id up to the server and the server checks its memory and finds the session ID.
+Then server does the authorization (it checks if the user is authorized to make sure user has access for the data it requested.) 
+Server says ok. The user which has that session ID can get the data or not.
+
+But JWT, instead of actually using these cookies it uses a JSON Web Token (JWT) to do the authorization.
+
+Session is stored at server while JWT is not.
+Session can be used at only one server where it is stored, even though servers are horizontally scaled, 
+while JWT can be used at any server since JWT is not stored, instead it contains header.payload.signature. (JWT Playground: https://jwt.io/)
+
+------------------------------------------------------------------------------------------------------------------------
+
+Cookies explained
+https://cheatcode.co/tutorials/how-to-implement-secure-httponly-cookies-in-node-js-with-express [Very useful and informative]*****
