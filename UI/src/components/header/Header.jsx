@@ -90,57 +90,62 @@ const Header = () => {
 
           <div className="headerSearchItem">
             <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-            <span className="headerSearchText">{`${options.adult} adult • ${options.children} childern • ${options.room} room`}</span>
-            <div className="options">
-              <div className="optionItem">
-                <span className="optionText">Adult</span>
-                <div className="optionCounter">
-                  <button
-                    disabled={options.adult <= 1}
-                    className="optionCounterButton"
-                    onClick={() => handleOption('adult', 'd')}
-                  >
-                    -
-                  </button>
-                  <span className="optionCounterNumber">{options.adult}</span>
-                  <button className="optionCounterButton" onClick={() => handleOption('adult', 'i')}>
-                    +
-                  </button>
+            <span
+              className="headerSearchText"
+              onClick={() => setOpenOptions(!openOptions)}
+            >{`${options.adult} adult • ${options.children} childern • ${options.room} room`}</span>
+            {openOptions && (
+              <div className="options">
+                <div className="optionItem">
+                  <span className="optionText">Adult</span>
+                  <div className="optionCounter">
+                    <button
+                      disabled={options.adult <= 1}
+                      className="optionCounterButton"
+                      onClick={() => handleOption('adult', 'd')}
+                    >
+                      -
+                    </button>
+                    <span className="optionCounterNumber">{options.adult}</span>
+                    <button className="optionCounterButton" onClick={() => handleOption('adult', 'i')}>
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div className="optionItem">
+                  <span className="optionText">Children</span>
+                  <div className="optionCounter">
+                    <button
+                      disabled={options.children <= 0}
+                      className="optionCounterButton"
+                      onClick={() => handleOption('children', 'd')}
+                    >
+                      -
+                    </button>
+                    <span className="optionCounterNumber">{options.children}</span>
+                    <button className="optionCounterButton" onClick={() => handleOption('children', 'i')}>
+                      +
+                    </button>
+                  </div>
+                </div>
+                <div className="optionItem">
+                  <span className="optionText">Room</span>
+                  <div className="optionCounter">
+                    <button
+                      disabled={options.room <= 1}
+                      className="optionCounterButton"
+                      onClick={() => handleOption('room', 'd')}
+                    >
+                      -
+                    </button>
+                    <span className="optionCounterNumber">{options.room}</span>
+                    <button className="optionCounterButton" onClick={() => handleOption('room', 'i')}>
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div className="optionItem">
-                <span className="optionText">Children</span>
-                <div className="optionCounter">
-                  <button
-                    disabled={options.children <= 0}
-                    className="optionCounterButton"
-                    onClick={() => handleOption('children', 'd')}
-                  >
-                    -
-                  </button>
-                  <span className="optionCounterNumber">{options.children}</span>
-                  <button className="optionCounterButton" onClick={() => handleOption('children', 'i')}>
-                    +
-                  </button>
-                </div>
-              </div>
-              <div className="optionItem">
-                <span className="optionText">Room</span>
-                <div className="optionCounter">
-                  <button
-                    disabled={options.room <= 1}
-                    className="optionCounterButton"
-                    onClick={() => handleOption('room', 'd')}
-                  >
-                    -
-                  </button>
-                  <span className="optionCounterNumber">{options.room}</span>
-                  <button className="optionCounterButton" onClick={() => handleOption('room', 'i')}>
-                    +
-                  </button>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
           <div className="headerSearchItem">
             <button className="headerBtn">Search</button>
