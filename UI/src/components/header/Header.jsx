@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faPlane, faCar, faTaxi, faCalendarDays, faPerson } from '@fortawesome/free-solid-svg-icons';
@@ -28,6 +29,9 @@ const Header = ({ type }) => {
   });
 
   const [destination, setDestination] = useState('');
+
+  const navigate = useNavigate();
+
   const handleOption = (name, operation) => {
     setOptions(prev => {
       return {
@@ -35,6 +39,10 @@ const Header = ({ type }) => {
         [name]: operation === 'i' ? options[name] + 1 : options[name] - 1
       };
     });
+  };
+
+  const handleSearch = () => {
+    navigate('/hotels', { state: { destination, date, options } });
   };
 
   return (
@@ -164,7 +172,9 @@ const Header = ({ type }) => {
                 )}
               </div>
               <div className="headerSearchItem">
-                <button className="headerBtn">Search</button>
+                <button className="headerBtn" onClick={handleSearch}>
+                  Search
+                </button>
               </div>
             </div>
           </>
