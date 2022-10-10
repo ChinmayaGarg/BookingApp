@@ -11,7 +11,7 @@
 }
 
 .fList {
-  flex: 1;
+  /* flex: 1; */
   list-style: none;
 
   /* padding: 0 is most important because unordered list has a default padding and we have to remove that   */
