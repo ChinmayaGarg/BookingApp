@@ -33,6 +33,26 @@ const Header = () => {
         <h1 className="headerTitle">Find your next stay</h1>
         <p className="headerDesc">Search deals on hotels, homes, and much more...</p>
         <button className="headerBtn">Sign In / Register</button>
+
+        <div className="headerSearch">
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faBed} className="headerIcon" />
+            <input className="headerSearchInput" type="text" placeholder="Where are you going?" />
+          </div>
+
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
+            <span className="headerSearchText">date to date</span>
+          </div>
+
+          <div className="headerSearchItem">
+            <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+            <span className="headerSearchText">2 adults 2 children 1 room</span>
+          </div>
+          <div className="headerSearchItem">
+            <button className="headerBtn">Search</button>
+          </div>
+        </div>
       </div>
     </div>
   );
