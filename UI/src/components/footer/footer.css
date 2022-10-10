@@ -1,0 +1,30 @@
+.footer {
+  width: 100%;
+  max-width: 1024px;
+}
+
+.fLists {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.fList {
+  flex: 1;
+  list-style: none;
+
+  /* padding: 0 is most important because unordered list has a default padding and we have to remove that   */
+  padding: 0;
+}
+
+.fListItem {
+  font-size: 12px;
+  padding: 3px;
+  cursor: pointer;
+  color: #0071c2;
+}
+
+.fListItem:hover {
+  color: #ed7014;
+}
