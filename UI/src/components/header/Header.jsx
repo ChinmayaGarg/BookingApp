@@ -27,6 +27,7 @@ const Header = ({ type }) => {
     room: 1
   });
 
+  const [destination, setDestination] = useState('');
   const handleOption = (name, operation) => {
     setOptions(prev => {
       return {
@@ -70,7 +71,12 @@ const Header = ({ type }) => {
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
-                <input className="headerSearchInput" type="text" placeholder="Where are you going?" />
+                <input
+                  className="headerSearchInput"
+                  type="text"
+                  placeholder="Where are you going?"
+                  onChange={e => setDestination(e.target.value)}
+                />
               </div>
 
               <div className="headerSearchItem">
