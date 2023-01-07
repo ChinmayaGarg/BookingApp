@@ -2,6 +2,7 @@ import Room from '../models/Room.js';
 import Hotel from '../models/Hotel.js';
 import { createError } from '../utils/error.js';
 
+// When we add our room we will also add the room from its hotel
 export const createRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
   const newRoom = new Room(req.body);
@@ -30,6 +31,7 @@ export const updateRoom = async (req, res, next) => {
   }
 };
 
+// When we delete our room we will also delete the room from its hotel
 export const deleteRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
   try {
