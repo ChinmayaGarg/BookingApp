@@ -90,4 +90,21 @@ With the help of API Platform like Postman or Insomnia, we can check by sending 
 5. For GET ALL request for Hotel we can use following data in our request:
           API Request URL: localhost:8800/hotels
           API Request Body: null
+
+LEARNING: Handling same HTTP requests with different paths and params
+// GET
+router.get('/:id', getHotel);
+//GET BY CITY
+router.get('/countByCity', countByCity);
+Now when we will request using HTTP request "localhost:8800/hotels/countByCity?cities=berlin,madrid,london",
+the expected behavior is to hit the "GET BY CITY" route. 
+But what actually happens is API will get the request and will treat everything after "/" i.e. "countByCity?cities=berlin,madrid,london" as id
+because
+1. Both are get request handlers 
+2. the APIs "GET" route is hit first than "GET BY CITY"
+3. As both the routes have 1 slash, the "GET" route after slash is taking in 'id' param. 
+   So, API will go to the "GET" route and see okay so this handles get requests and the GET HTTP request have 1 "/" and after it everything is param.
+SOLUTION: Therefore we have to change the "GET" route from "/:id" to "/find/:id"
+          router.get('/:id', getHotel); -> router.get('/find/:id', getHotel);
+
 */
