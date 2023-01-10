@@ -47,3 +47,45 @@ export const getHotels = async (req, res, next) => {
     next(err);
   }
 };
+
+export const countByCity = async (req, res, next) => {
+  const cities = req.query.cities.split(',');
+  try {
+    const list = await Promise.all(
+      cities.map(city => {
+        // return Hotel.find({ city: city }).length;
+        return Hotel.countDocuments({ city: city });
+      })
+    );
+    res.status(200).json(list);
+  } catch (err) {
+    next(err);
+  }
+};
+
+/*
+
+const cities = req.query.cities; 
+-- This will return the string cities passed in query after question mark i.e. localhost:8800/hotels/countByCity?cities=berlin,madrid,london
+"berlin,madrid,london"
+
+const cities = req.query.cities.split(',');
+-- This will return the array of cities passed in query after question mark by splitting them at comma i.e. localhost:8800/hotels/countByCity?cities=berlin,madrid,london
+[berlin, madrid, london]
+
+Promise.all()
+-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+
+// return Hotel.find({ city: city }).length;
+return Hotel.countDocuments({ city: city });
+-- We have not used 1st query, instead we used second query to find the no. of hotels in a city because 
+1st query is costly as it first fetches data and then counts,
+while 2nd method countDocuments is MongoDB built-in method.
+https://www.mongodb.com/docs/manual/reference/method/db.collection.countDocuments/
+Unlike db.collection.count(), db.collection.countDocuments() does not use the metadata to return the count. 
+Instead, it performs an aggregation of the document to return an accurate count, even after an unclean shutdown or 
+in the presence of orphaned documents in a sharded cluster.
+
+
+
+*/
