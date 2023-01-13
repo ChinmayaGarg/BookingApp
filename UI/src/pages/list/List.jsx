@@ -24,6 +24,12 @@ const List = () => {
   const [max, setMax] = useState(undefined);
 
   const { data, loading, error, reFetch } = useFetch(`/hotels?city=${destination}&min=${min || 0}&max=${max || 10000}`);
+
+  const handleClick = () => {
+    reFetch();
+    // useFetch(`/hotels?city=${destination}`); This line gives error but why?
+  };
+
   return (
     <div>
       <Navbar />
@@ -90,7 +96,7 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <button>Search</button>
+            <button onClick={handleClick}>Search</button>
           </div>
           <div className="listResult">
             {loading ? (
