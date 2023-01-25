@@ -7,3 +7,5 @@ const INITIAL_STATE = {
     room: undefined
   }
 };
+
+export const SearchContext = createContext(INITIAL_STATE);
