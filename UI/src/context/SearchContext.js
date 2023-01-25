@@ -27,3 +27,4 @@ const SearchReducer = (state, action) => {
       return state;
   }
 };
+  const [state, dispatch] = useReducer(SearchReducer, INITIAL_STATE);
