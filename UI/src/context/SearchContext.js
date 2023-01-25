@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
   city: undefined,
-  dates: [],
+  date: [],
   options: {
     adult: undefined,
     children: undefined,
