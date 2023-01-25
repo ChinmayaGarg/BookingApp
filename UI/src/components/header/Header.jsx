@@ -8,6 +8,8 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns'; // used to convert date from react-date-range to readable format
+import { useContext } from 'react';
+import { SearchContext } from '../../context/SearchContext';
 
 const Header = ({ type }) => {
   const [openDate, setOpenDate] = useState(false);
@@ -40,6 +42,8 @@ const Header = ({ type }) => {
       };
     });
   };
+
+  const { dispatch } = useContext(SearchContext);
 
   const handleSearch = () => {
     navigate('/hotels', { state: { destination, date, options } });
