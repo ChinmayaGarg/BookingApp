@@ -5,9 +5,10 @@ import MailList from '../../components/mailList/MailList';
 import Footer from '../../components/footer/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faCircleArrowLeft, faCircleArrowRight, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
 import { useLocation } from 'react-router-dom';
+import { SearchContext } from '../../context/SearchContext';
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
@@ -17,6 +18,7 @@ const Hotel = () => {
   const id = location.pathname.split('/')[2];
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
 
+  const { date, options } = useContext(SearchContext);
   const handleOpen = i => {
     setSlideNumber(i);
     setOpen(true);
