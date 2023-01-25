@@ -27,4 +27,13 @@ const SearchReducer = (state, action) => {
       return state;
   }
 };
+
+export const SearchContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(SearchReducer, INITIAL_STATE);
+
+  return (
+    <SearchContext.Provider value={{ city: state.city, date: state.date, options: state.options, dispatch }}>
+      {children}
+    </SearchContext.Provider>
+  );
+};
