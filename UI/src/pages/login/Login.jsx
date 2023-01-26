@@ -20,10 +20,10 @@ function Login() {
 
   const handleClick = async e => {
     e.preventDefault();
-    dispatch({ type: 'LOGIN_START' });
+    dispatch({ type: AUTH_ACTIONS.LOGIN_START });
     try {
       const res = await axios.post('/auth/login', credentials);
-      dispatch({ type: AUTH_ACTIONS.LOGIN_SUCCESS, payload: res.data.details });
+      dispatch({ type: AUTH_ACTIONS.LOGIN_SUCCESS, payload: res.data });
       navigate('/');
     } catch (err) {
       dispatch({ type: AUTH_ACTIONS.LOGIN_FAILURE, payload: err.response.data });
