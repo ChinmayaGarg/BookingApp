@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,8 +8,8 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns'; // used to convert date from react-date-range to readable format
-import { useContext } from 'react';
 import { SearchContext, ACTIONS } from '../../context/SearchContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const Header = ({ type }) => {
   const [openDate, setOpenDate] = useState(false);
@@ -33,6 +33,8 @@ const Header = ({ type }) => {
   const [destination, setDestination] = useState('');
 
   const navigate = useNavigate();
+
+  const { user } = useContext(AuthContext);
 
   const handleOption = (name, operation) => {
     setOptions(prev => {
@@ -79,7 +81,7 @@ const Header = ({ type }) => {
           <>
             <h1 className="headerTitle">Find your next stay</h1>
             <p className="headerDesc">Search deals on hotels, homes, and much more...</p>
-            <button className="headerBtn">Sign In / Register</button>
+            {!user && <button className="headerBtn">Sign In / Register</button>}
 
             <div className="headerSearch">
               <div className="headerSearchItem">
