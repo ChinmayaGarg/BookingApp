@@ -22,7 +22,11 @@ function Login() {
     e.preventDefault();
     dispatch({ type: AUTH_ACTIONS.LOGIN_START });
     try {
-      const res = await axios.post('/auth/login', credentials);
+      const BASE_URL = 'https://bookingapp-production.up.railway.app';
+      const RELATIVE_URL = '/auth/login';
+      const url = BASE_URL + RELATIVE_URL;
+      const res = await axios.post(url, credentials);
+      // const res = await axios.post(RELATIVE_URL, credentials);
       dispatch({ type: AUTH_ACTIONS.LOGIN_SUCCESS, payload: res.data });
       navigate('/');
     } catch (err) {
