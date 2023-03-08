@@ -23,7 +23,11 @@ const List = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-  const { data, loading, error, reFetch } = useFetch(`/hotels?city=${destination}&min=${min || 0}&max=${max || 10000}`);
+  const BASE_URL = 'https://bookingapp-production.up.railway.app';
+  const RELATIVE_URL = !!destination ? `/hotels?city=${destination}&min=${min || 0}&max=${max || 10000}` : '/hotels';
+  const url = BASE_URL + RELATIVE_URL;
+  const { data, loading, error, reFetch } = useFetch(url);
+  // const { data, loading, error, reFetch } = useFetch(RELATIVE_URL);
 
   const handleClick = () => {
     reFetch();

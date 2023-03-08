@@ -16,7 +16,12 @@ const Hotel = () => {
 
   const location = useLocation();
   const id = location.pathname.split('/')[2];
-  const { data, loading, error } = useFetch(`/hotels/find/${id}`);
+
+  const BASE_URL = 'https://bookingapp-production.up.railway.app';
+  const RELATIVE_URL = '/hotels/find/${id}';
+  const url = BASE_URL + RELATIVE_URL;
+  const { data, loading, error } = useFetch(url);
+  // const { data, loading, error } = useFetch(RELATIVE_URL);
 
   const { date, options } = useContext(SearchContext);
 
