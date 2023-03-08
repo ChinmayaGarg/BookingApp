@@ -3,7 +3,11 @@ import useFetch from '../../hooks/useFetch';
 import './featured.css';
 
 const Featured = () => {
-  const { data, loading, error } = useFetch('/hotels/countByCity?cities=berlin,madrid,london');
+  const BASE_URL = 'https://bookingapp-production.up.railway.app';
+  const RELATIVE_URL = '/hotels/countByCity?cities=berlin,madrid,london';
+  const url = BASE_URL + RELATIVE_URL;
+  const { data, loading, error } = useFetch(url);
+  // const { data, loading, error } = useFetch(RELATIVE_URL);
 
   return (
     <div className="featured">
